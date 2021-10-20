@@ -43,8 +43,8 @@
 
         void disp (inout appdata v)
         {
-            float d = tex2Dlod(_DispTex, float4(v.texcoord.xy * _TextureScale + _TextureOffset,0,0)).r * _DisplacementScale + _DisplacementOffset;
-            d /= _TextureScale;
+            float d = tex2Dlod(_DispTex, float4(v.texcoord.xy / _TextureScale + _TextureOffset,0,0)).r * _DisplacementScale + _DisplacementOffset;
+            d *= _TextureScale;
             v.vertex.xyz += v.normal * d;
         }
 
@@ -57,11 +57,11 @@
         fixed4 _Color;
 
         void surf (Input IN, inout SurfaceOutput o) {
-            half4 c = tex2D (_MainTex, IN.uv_MainTex.xy * _TextureScale + _TextureOffset) * _Color;
+            half4 c = tex2D (_MainTex, IN.uv_MainTex.xy / _TextureScale + _TextureOffset) * _Color;
             o.Albedo = c.rgb;
             o.Specular = 0.2;
             o.Gloss = 1.0;
-            o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_MainTex * _TextureScale + _TextureOffset)).xyz;
+            o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_MainTex / _TextureScale + _TextureOffset)).xyz;
         }
         ENDCG
     }

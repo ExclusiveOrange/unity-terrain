@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1d65cc7937a31e3489e2372548f05d5f, type: 2}
+  - {fileID: 2100000, guid: 01dbd20d4b05a424b8823a7a65b46ece, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,4 +115,4 @@ MonoBehaviour:
   perlinZOffset: 2345.67
   perlinScale: 0.03333
   verticalSize: 10
-  textureSize: 1
+  textureSize: 2
