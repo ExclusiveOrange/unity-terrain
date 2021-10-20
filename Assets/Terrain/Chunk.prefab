@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593191779738878876}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 2
@@ -111,3 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 10
   steps: 10
+  perlinXOffset: 0.1
+  perlinZOffset: 0.2
+  perlinScale: 0.03333
+  verticalSize: 10
+  textureSize: 1
