@@ -111,8 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 10
   steps: 10
-  perlinXOffset: 0.1
-  perlinZOffset: 0.2
+  perlinXOffset: 1234.56
+  perlinZOffset: 2345.67
   perlinScale: 0.03333
   verticalSize: 10
   textureSize: 1

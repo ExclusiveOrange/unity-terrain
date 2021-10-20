@@ -30,11 +30,13 @@ namespace Player
       if (isGrounded && velocity.y < 0)
         velocity.y = 0f;
 
-      float x = Input.GetAxis("Horizontal");
-      float z = Input.GetAxis("Vertical");
+      // note: Input.GetAxis has some weird lag issues where it keeps outputting well after the user releases,
+      //       so instead I am using GetAxisRaw to eliminate lag.
+      float x = Input.GetAxisRaw("Horizontal");
+      float z = Input.GetAxisRaw("Vertical");
 
       Transform currentTransform = transform;
-      Vector3 move = currentTransform.right * x + currentTransform.forward * z;
+      Vector3 move = (currentTransform.right * x + currentTransform.forward * z).normalized;
       controller.Move(move * speed * Time.deltaTime);
 
       if (Input.GetButtonDown("Jump") && isGrounded)
