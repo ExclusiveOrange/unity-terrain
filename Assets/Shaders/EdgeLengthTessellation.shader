@@ -5,11 +5,11 @@
         _TextureOffset ("Texture Offset", Range(-1.0, 1.0)) = 0
         _MainTex ("Base (RGB)", 2D) = "white" {}
         _DispTex ("Disp Texture", 2D) = "gray" {}
-        _NormalMap ("Normalmap", 2D) = "bump" {}
         _DisplacementScale ("Displacement Scale", Range(0, 1.0)) = 0.5
         _DisplacementOffset ("Displacement Offset", Range(-10.0, 10.0)) = 0.0
-        _Color ("Color", color) = (1,1,1,0)
-        _SpecColor ("Spec color", color) = (0.5,0.5,0.5,0.5)
+        _NormalMap ("Normal", 2D) = "bump" {}
+        _RoughMap ("Roughness", 2D) = "black" {}
+        _SpecColor ("Specular Color", color) = (0.5, 0.5, 0.5, 0.5)
     }
     SubShader {
         Tags { "RenderType"="Opaque" }
@@ -54,14 +54,18 @@
 
         sampler2D _MainTex;
         sampler2D _NormalMap;
-        fixed4 _Color;
+        sampler2D _RoughMap;
 
         void surf (Input IN, inout SurfaceOutput o) {
-            half4 c = tex2D (_MainTex, IN.uv_MainTex.xy / _TextureScale + _TextureOffset) * _Color;
-            o.Albedo = c.rgb;
-            o.Specular = 0.2;
-            o.Gloss = 1.0;
-            o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_MainTex / _TextureScale + _TextureOffset)).xyz;
+            const float2 uv = IN.uv_MainTex.xy / _TextureScale + _TextureOffset;
+
+            half4 diffuse = tex2D(_MainTex, uv);
+            o.Albedo = diffuse.rgb;
+            o.Normal = UnpackNormal(tex2D(_NormalMap, uv)).xyz;
+            
+            const half rough = tex2D(_RoughMap, uv).r;
+            o.Specular = 0.2; // specular power
+            o.Gloss = 1.0 - rough; // specular intensity
         }
         ENDCG
     }

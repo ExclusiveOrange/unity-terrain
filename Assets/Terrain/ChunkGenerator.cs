@@ -35,7 +35,7 @@ namespace Terrain
       var heightMap = new float[heightMapSize * heightMapSize];
       
       float getHeight(int x, int z) => heightMap[ x + 1 + (z + 1) * heightMapSize ];
-      float setHeight(int x, int z, float y) => heightMap[ x + 1 + (z + 1) * heightMapSize ] = y;
+      void setHeight(int x, int z, float y) => heightMap[ x + 1 + (z + 1) * heightMapSize ] = y;
 
       for (int zi = -1; zi <= steps + 1; ++zi)
       {
@@ -83,20 +83,6 @@ namespace Terrain
         Vector4 tangent = new Vector4(t.x, t.y, t.z, 1f);
         
         return (normal, tangent);
-      }
-      
-      Vector3 calculateNormalAt(int x, int z)
-      {
-        float zn = getHeight(x, z-1);
-        float xn = getHeight(x-1, z);
-        float xp = getHeight(x+1, z);
-        float zp = getHeight(x, z+1);
-        
-        return new Vector3(
-          (xn - xp) * rStepSize,
-          2f,
-          (zn - zp) * rStepSize)
-          .normalized;
       }
 
       //------------------------------------------------------------------------------
