@@ -7,7 +7,7 @@ namespace Player
   public class MouseLook : MonoBehaviour
   {
     // See Project Settings / Input Manager to change the mouse sensitivity for each axis directly.
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 10f;
     public Transform playerBody;
 
     private float xRotation = 0f;
@@ -19,7 +19,7 @@ namespace Player
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
       mouseLocked = IsMouseLocked();
 

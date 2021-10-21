@@ -460,6 +460,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6743364236248428983, guid: 2f1b0f8885ccf994c9e480d7ffc81c91, type: 3}
+      propertyPath: mouseSensitivity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6743364237369588120, guid: 2f1b0f8885ccf994c9e480d7ffc81c91, type: 3}
       propertyPath: m_Name
       value: FirstPersonPlayer
