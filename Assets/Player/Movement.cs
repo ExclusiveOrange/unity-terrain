@@ -20,7 +20,7 @@ namespace Player
 
     private void OnGUI()
     {
-      GUI.Label(new Rect(10, 40, 300, 30), $"velocity.y {velocity.y}");
+      // GUI.Label(new Rect(10, 40, 300, 30), $"velocity.y {velocity.y}");
     }
 
     private void Update()
